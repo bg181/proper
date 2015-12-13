@@ -1,19 +1,25 @@
 module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+      bower_concat: {
+        all: {
+          dest: 'js/app.js'
+        }
+    },
     jshint: {
       src: ['src/js/**/*.js']
     },
     sass: {
       expanded: {
         options: { outputStyle: 'expanded' },
-        files: { 'css/app.css': 'src/scss/app.scss' }
+        files: { 'css/app.css': 'src/scss/app.scss'},
       },
       compressed: {
         options: { outputStyle: 'compressed' },
         files: { 'css/app.min.css': 'src/scss/app.scss' }
       }
     },
+    // src: ['src/js/app.js', 'src/js/**/*.js', 'bower_components/ng-flow/dist/*.js', 'bower_components/ng-flow/src/**/*.js', 'bower_components/ng-flow/src/**/**/*.js', 'bower_components/angular/*.js'],
     concat: {
       dist: {
         src: ['src/js/app.js', 'src/js/**/*.js'],
@@ -81,9 +87,10 @@ module.exports = function(grunt) {
   // grunt.loadNpmTasks('grunt-contrib-uglify');
   // grunt.loadNpmTasks('grunt-contrib-watch');
   // grunt.loadNpmTasks('grunt-replace');
+  // grunt.loadNpmTasks('grunt-bower-concat');
 
   require('load-grunt-tasks')(grunt);
 
   grunt.registerTask('default', ['jshint', 'sass:expanded', 'concat', 'replace:development', 'watch']);
-  grunt.registerTask('build', ['jshint', 'sass:compressed', 'concat', 'uglify', 'replace:production']);
+  grunt.registerTask('build', ['jshint', 'sass:compressed', 'concat', 'uglify', 'bower-concat', 'replace:production']);
 }
