@@ -1,12 +1,12 @@
 angular
-  .module('logging', ['ngResource', 'angular-jwt', 'ui.router', 'satellizer'])
+  .module('AWOL', ['ngResource', 'angular-jwt', 'ui.router', 'satellizer'])
   .constant('API', 'http://localhost:3000/api')
   .config(MainRouter)
   .config(function($httpProvider){
     $httpProvider.interceptors.push('authInterceptor');
   })
   .config(function($authProvider) {
-    $authProvider.facebook({ clientId: '1535877196647406'});
+    $authProvider.facebook({ clientId: '1942210682670926'});
   });
 
   MainRouter.$inject = ['$stateProvider', '$urlRouterProvider'];
@@ -22,8 +22,16 @@ angular
         templateUrl: "login.html"
       })
       .state('register', {
-        url: "/register",
-        templateUrl: "register.html"
+        url: "/registertakeo",
+        templateUrl: "registertakeo.html"
+      })
+      .state('facebookLogIn', {
+        url: "/facebookLogIn",
+        templateUrl: "facebookLogIn.html"
+      })
+      .state('facebookRegister', {
+        url: "/join",
+        templateUrl: "facebookRegister.html"
       })
       .state('profile', {
         url: "/profile",
@@ -41,3 +49,9 @@ angular
 
     $urlRouterProvider.otherwise("/");
   }
+
+  angular
+      .module('app', ['angularFileUpload'])
+      .controller('AppController', function($scope, FileUploader) {
+          $scope.uploader = new FileUploader();
+      });

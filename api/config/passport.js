@@ -4,24 +4,22 @@ var User          = require("../models/user");
 module.exports = function(passport) {
 
   passport.use('local-signup', new LocalStrategy({
-    usernameField: "email",
+    usernameField: "username",
     passwordField: "password",
     passReqToCallback: true,
-  }, function(req, email, password, done) {
+  }, function(req, username, password, done) {
 
-    // Find a user with this email
-    User.findOne({ 'local.email' : email }, function(err, user) {
+    // Find a user with this username
+    User.findOne({ 'local.username' : username }, function(err, user) {
       // Error found
       if (err) return done(err, false, { message: "Something went wrong." });
 
       // No error but already an user registered
-      if (user) return done(null, false, { message: "Please choose another email." });
+      if (user) return done(null, false, { message: "Please choose another username." });
 
       var newUser            = new User();
-      newUser.local.email    = email;
+      newUser.local.username = username;
       newUser.local.username = req.body.username;
-      newUser.local.fullname = req.body.fullname;
-      newUser.local.image    = req.body.image;
       newUser.local.password = User.encrypt(password);
 
       newUser.save(function(err, user) {

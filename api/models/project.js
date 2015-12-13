@@ -1,9 +1,10 @@
 var mongoose = require("mongoose");
 
 var projectSchema = mongoose.Schema({
-  title: { type: String, required: true },
+  Address: { type: String, required: true },
   description: String,
-  image: String,
+  photo: String,
+  title: { type: String, required: true },
 });
 
 module.exports = mongoose.model('Project', projectSchema);

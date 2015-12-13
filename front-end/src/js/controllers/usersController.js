@@ -1,5 +1,5 @@
 angular
-  .module('logging')
+  .module('AWOL')
   .controller('UsersController', UsersController);
 
 UsersController.$inject = ['User', 'TokenService', '$state', 'CurrentUser', '$auth'];

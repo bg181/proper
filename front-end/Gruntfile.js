@@ -1,10 +1,11 @@
 module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-      bower_concat: {
-        all: {
-          dest: 'js/app.js'
-        }
+    bower_concat: {
+      all: {
+        dest: 'js/vendor.js',
+        exclude: ['angular']
+      }
     },
     jshint: {
       src: ['src/js/**/*.js']
@@ -27,7 +28,7 @@ module.exports = function(grunt) {
       }
     },
     uglify: {
-      'js/app.min.js': 'js/app.js'
+      'js/app.min.js': ['js/app.js', 'js/vendor.js']
     },
     watch: {
       configFiles: {
@@ -81,16 +82,16 @@ module.exports = function(grunt) {
     }
   });
 
-  // grunt.loadNpmTasks('grunt-contrib-jshint');
-  // grunt.loadNpmTasks('grunt-sass');
-  // grunt.loadNpmTasks('grunt-contrib-concat');
-  // grunt.loadNpmTasks('grunt-contrib-uglify');
-  // grunt.loadNpmTasks('grunt-contrib-watch');
-  // grunt.loadNpmTasks('grunt-replace');
-  // grunt.loadNpmTasks('grunt-bower-concat');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-sass');
+  grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-replace');
+  grunt.loadNpmTasks('grunt-bower-concat');
 
   require('load-grunt-tasks')(grunt);
 
   grunt.registerTask('default', ['jshint', 'sass:expanded', 'concat', 'replace:development', 'watch']);
-  grunt.registerTask('build', ['jshint', 'sass:compressed', 'concat', 'uglify', 'bower-concat', 'replace:production']);
+  grunt.registerTask('build', ['jshint', 'sass:compressed', 'bower-concat', 'concat', 'uglify', 'replace:production']);
 }

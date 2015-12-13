@@ -9,11 +9,13 @@ var cookieParser   = require("cookie-parser");
 var methodOverride = require("method-override");
 var jwt            = require('jsonwebtoken');
 var expressJWT     = require('express-jwt');
+var multer         = require('multer');
 var app            = express();
 
 var config         = require('./config/config');
 var User           = require('./models/user');
 var secret         = require('./config/config').secret;
+var upload         = multer({ dest: 'projects/:id/image' })
 
 mongoose.connect(config.database);
 
@@ -38,7 +40,8 @@ app.use('/api', expressJWT({ secret: secret })
   .unless({
     path: [
       { url: '/api/login', methods: ['POST'] },
-      { url: '/api/register', methods: ['POST'] },
+      { url: '/api/facebookLogIn', methods: ['POST'] },
+      { url: '/api/join', methods: ['POST'] },
       { url: '/api/projects', methods: ['GET'] },
       { url: '/api/projects', methods: ['POST'] },
       { url: '/api/users', methods: ['GET'] },

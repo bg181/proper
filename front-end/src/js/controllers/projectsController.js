@@ -1,5 +1,5 @@
 angular
-  .module('logging')
+  .module('AWOL')
   .controller('ProjectsController', ProjectsController);
 
 ProjectsController.$inject = ["Project", "User", "CurrentUser"];
@@ -37,7 +37,6 @@ function ProjectsController(Project, User, CurrentUser){
 
   self.getProjects();
   self.getUsers();
-  // getProjects();
 
   console.log(CurrentUser.getUser());
 }

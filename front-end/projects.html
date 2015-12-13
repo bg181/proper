@@ -18,10 +18,11 @@
     <label for="description">Description</label>
     <textarea name="description" id="description" ng-model="projects.project.description"></textarea>
   </div>
-  <div>
-    <label for="description">image</label>
-    <flow-btn ng-model="projects.project.image"></flow-btn>
+  <div class="pure-control-group">
+    <label for="photo">photo</label>
+    <input name="photo" id="image" ng-model="projects.project.photo">
   </div>
+
   <div class="pure-control-group">
     <label for="github">Github</label>
     <input type="text" name="github" id="github" ng-model="projects.project.github">

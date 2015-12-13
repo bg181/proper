@@ -1,12 +1,12 @@
 angular
-  .module('logging', ['ngResource', 'angular-jwt', 'ui.router', 'satellizer'])
+  .module('AWOL', ['ngResource', 'angular-jwt', 'ui.router', 'satellizer'])
   .constant('API', 'http://localhost:3000/api')
   .config(MainRouter)
   .config(function($httpProvider){
     $httpProvider.interceptors.push('authInterceptor');
   })
   .config(function($authProvider) {
-    $authProvider.facebook({ clientId: '1535877196647406'});
+    $authProvider.facebook({ clientId: '1942210682670926'});
   });
 
   MainRouter.$inject = ['$stateProvider', '$urlRouterProvider'];
@@ -22,8 +22,16 @@ angular
         templateUrl: "login.html"
       })
       .state('register', {
-        url: "/register",
-        templateUrl: "register.html"
+        url: "/registertakeo",
+        templateUrl: "registertakeo.html"
+      })
+      .state('facebookLogIn', {
+        url: "/facebookLogIn",
+        templateUrl: "facebookLogIn.html"
+      })
+      .state('facebookRegister', {
+        url: "/join",
+        templateUrl: "facebookRegister.html"
       })
       .state('profile', {
         url: "/profile",
@@ -41,8 +49,14 @@ angular
 
     $urlRouterProvider.otherwise("/");
   }
+
+  angular
+      .module('app', ['angularFileUpload'])
+      .controller('AppController', function($scope, FileUploader) {
+          $scope.uploader = new FileUploader();
+      });
 angular
-  .module('logging')
+  .module('AWOL')
   .controller('ProjectsController', ProjectsController);
 
 ProjectsController.$inject = ["Project", "User", "CurrentUser"];
@@ -80,12 +94,11 @@ function ProjectsController(Project, User, CurrentUser){
 
   self.getProjects();
   self.getUsers();
-  // getProjects();
 
   console.log(CurrentUser.getUser());
 }
 angular
-  .module('logging')
+  .module('AWOL')
   .controller('UsersController', UsersController);
 
 UsersController.$inject = ['User', 'TokenService', '$state', 'CurrentUser', '$auth'];
@@ -159,7 +172,7 @@ function UsersController(User, TokenService, $state, CurrentUser, $auth){
 return self;
 }
 angular
-  .module('logging')
+  .module('AWOL')
   .factory('Project', Project);
 
 Project.$inject = ['$resource', 'API'];
@@ -181,7 +194,7 @@ function Project($resource, API){
     });
 }
 angular
-  .module('logging')
+  .module('AWOL')
   .factory('User', User);
 
 User.$inject = ['$resource', 'API'];
@@ -207,7 +220,7 @@ function User($resource, API){
   );
 }
 angular
-  .module('logging')
+  .module('AWOL')
   .factory('authInterceptor', AuthInterceptor);
 
 // Like in insomnia this sets the header for our request so API can know we're authorized
@@ -233,7 +246,7 @@ function AuthInterceptor(API, TokenService) {
   };
 }
 angular
-  .module('logging')
+  .module('AWOL')
   .service('CurrentUser', CurrentUser);
 
 CurrentUser.$inject = ["TokenService"];
@@ -257,7 +270,7 @@ function CurrentUser(TokenService){
 
 }
 angular
-  .module('logging')
+  .module('AWOL')
   .service('TokenService', TokenService);
 
 TokenService.$inject = ['$window', 'jwtHelper'];

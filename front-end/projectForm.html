@@ -5,6 +5,7 @@
     <select name="user_id" id="user_id" ng-model="projects.project.user_id"> 
       <option value="{{user._id}}" ng-repeat="user in projects.users" >
         {{user.local.username}}
+<!--         {{users.FacebookID}} -->
       </option>
     </select>
   </div>
@@ -17,8 +18,8 @@
     <textarea name="description" id="description" ng-model="projects.project.description"></textarea>
   </div>
   <div>
+    <input type="file" ng-flow-btn ng-directory ng-model="projects.project.image" />
     <label for="description">image</label>
-    <flow-btn ng-model="projects.project.image"></flow-btn>
   </div>
   <div class="pure-control-group">
     <label for="github">Github</label>

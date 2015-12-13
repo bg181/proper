@@ -9,14 +9,19 @@ function projectsIndex(req, res){
 }
 
 function projectsCreate(req, res){
+  console.log(req.body.project);
   var project = new Project(req.body.project);
   project.save(function(err){
     if (err) return res.status(500).send(err);
     var id = req.body.project.user_id;
     User.findById(id, function(err, user){
-       user.projects.push(project);
-       user.save();
-       return res.status(201).send(project)
+      if(err) return res.status(500).json({ message: 'Error looking up user' });
+      if(!user) return res.status(404).json({ message: "User not found" });
+      user.projects.push(project);
+      user.save(function(err, user) {
+        if(err) return res.status(500).json({ message: 'Error saving user' });
+        return res.status(201).send(project);
+      });
     });
   });
 }

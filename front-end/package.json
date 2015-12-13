@@ -9,7 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "load-grunt-tasks": "^3.3.0"
   },
   "devDependencies": {
     "grunt-bower-concat": "^0.6.0",

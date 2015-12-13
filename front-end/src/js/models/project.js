@@ -1,5 +1,5 @@
 angular
-  .module('logging')
+  .module('AWOL')
   .factory('Project', Project);
 
 Project.$inject = ['$resource', 'API'];

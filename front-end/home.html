@@ -3,6 +3,8 @@
 <ul id="projects">
   <div class="eachProject" ng-repeat="project in projects.all">
     <strong>{{ project.title }}</strong>
+      <img ng-src="{{ project.photo }}">
     <span class='status {{project.description | lowercase }}'>{{project.description | uppercase}}</span>
   </div>
 </ul>
+
