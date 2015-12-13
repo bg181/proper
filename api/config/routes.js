@@ -22,6 +22,7 @@ router.route('/users/:id')
 
 router.route('/projects')
   .get(projectsController.projectsIndex)
+  .get(projectsController.projectsShow)
   .post(projectsController.projectsCreate)
 
 router.route('/projects/:id') 

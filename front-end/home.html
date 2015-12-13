@@ -1,1 +1,17 @@
-{{projects.all}}
+<h1>HOME</h1>
+
+<ul id="projects">
+  <div class="eachProject" ng-repeat="project in projects.all">
+    <strong>{{ project.title }}</strong>
+    <span class='status {{project.description | lowercase }}'>{{project.description | uppercase}}</span>
+  </div>
+</ul>
+
+
+
+<!-- <ul id="criminals">
+  <li ng-repeat="criminal in criminals.all" data-id="{{criminal._id}}">
+    <strong>{{criminal.name}}</strong> <em>{{criminal.location}}</em> <span class='status {{criminal.status | lowercase }}'>{{criminal.status | uppercase}}</span>
+    <button class='delete' ng-click="criminals.deleteCriminal(criminal)">X</button>
+  </li>
+</ul> -->

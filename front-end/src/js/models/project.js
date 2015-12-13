@@ -12,6 +12,11 @@ function Project($resource, API){
       'query':     { method: 'GET', isArray: true},
       'remove':    { method: 'DELETE' },
       'delete':    { method: 'DELETE' },
-    }
-  );
+    },
+    API+'/projects',
+    { 'get'   :    { method: 'GET' },
+      'save'  :    { method: 'POST' },
+      'remove':    { method: 'DELETE' },
+      'delete':    { method: 'DELETE' },
+    });
 }

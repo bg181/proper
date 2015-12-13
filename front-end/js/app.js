@@ -52,15 +52,16 @@ function ProjectsController(Project, User, CurrentUser){
 
   self.all     = [];
   self.users   = [];
-  self.project = {}; 
+  self.project = {};
 
   self.getProjects = function(){
+    console.log("getting projects...");
     Project.query(function(data){
+      console.log(data);
       // return self.all = data; MADE THIS CHANGE:
       self.all = data;
     });
   };
-
 
   self.getUsers = function(){
      User.query(function(data){
@@ -79,6 +80,7 @@ function ProjectsController(Project, User, CurrentUser){
 
   self.getProjects();
   self.getUsers();
+  // getProjects();
 
   console.log(CurrentUser.getUser());
 }
@@ -170,8 +172,13 @@ function Project($resource, API){
       'query':     { method: 'GET', isArray: true},
       'remove':    { method: 'DELETE' },
       'delete':    { method: 'DELETE' },
-    }
-  );
+    },
+    API+'/projects',
+    { 'get'   :    { method: 'GET' },
+      'save'  :    { method: 'POST' },
+      'remove':    { method: 'DELETE' },
+      'delete':    { method: 'DELETE' },
+    });
 }
 angular
   .module('logging')
