@@ -1,0 +1,32 @@
+{{projects.all}}
+
+<form ng-submit="projects.add()" class="pure-form pure-form-aligned">
+  <legend>Add Project</legend>
+  <div class="pure-control-group">
+    <label for="user_id">Username</label>
+    <select name="user_id" id="user_id" ng-model="projects.project.user_id"> 
+      <option value="{{user._id}}" ng-repeat="user in projects.users" >
+        {{user.local.username}}
+      </option>
+    </select>
+  </div>
+  <div class="pure-control-group">
+    <label for="title">Title</label>
+    <input type="text" name="title" id="title" ng-model="projects.project.title">
+  </div>
+  <div class="pure-control-group">
+    <label for="description">Description</label>
+    <textarea name="description" id="description" ng-model="projects.project.description"></textarea>
+  </div>
+  <div class="pure-control-group">
+    <label for="github">Github</label>
+    <input type="text" name="github" id="github" ng-model="projects.project.github">
+  </div>
+  <div class="pure-control-group">
+    <label for="website">Website</label>
+    <input type="text" name="website" id="website" ng-model="projects.project.website">
+  </div>
+  <div class="pure-controls">
+    <button type="submit" class="pure-button pure-button-primary">Register</button>
+  </div>
+</form>
